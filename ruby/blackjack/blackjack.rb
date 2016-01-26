@@ -30,13 +30,8 @@ class Deck
 
   def deal_card
     random = rand(@playable_cards.size)
-    p @playable_cards.size
-    p random
-    p @playable_cards[random]
-    p @playable_cards
-    p "----------"
+    return @playable_cards[random]
     @playable_cards.delete_at(random)
-    p @playable_cards
   end
 
   def shuffle
