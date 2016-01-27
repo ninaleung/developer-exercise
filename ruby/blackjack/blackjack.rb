@@ -67,7 +67,14 @@ class Game
     @dealer_hand = Hand.new
     2.times { @dealer_hand.hit(@deck) }
     p @player_hand
+  end
 
+  def dealer_top_card
+    p "Dealer's showing card:"
+    p @dealer_hand.cards[1].suite
+    p @dealer_hand.cards[1].name
+    p @dealer_hand.cards[1].value
+    @dealer_hand.cards[1]
   end
 end
 
@@ -138,5 +145,10 @@ class GameTest < Test::Unit::TestCase
 
   def test_dealer_hand_has_2_cards
     assert_equal @game.dealer_hand.cards.size, 2
+  end
+
+  def test_dealer_top_card
+    dealer_showing = @game.dealer_hand.cards[1]
+    assert_equal dealer_showing, @game.dealer_top_card
   end
 end
