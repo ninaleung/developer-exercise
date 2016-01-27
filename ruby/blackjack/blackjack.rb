@@ -57,6 +57,20 @@ class Hand
   end
 end
 
+class Game
+  attr_accessor :player_hand, :dealer_hand
+
+  def initialize
+    @deck = Deck.new
+    @player_hand = Hand.new
+    2.times { @player_hand.hit(@deck) }
+    @dealer_hand = Hand.new
+    2.times { @dealer_hand.hit(@deck) }
+    p @player_hand
+
+  end
+end
+
 require 'test/unit'
 
 class CardTest < Test::Unit::TestCase
@@ -110,5 +124,19 @@ class HandTest < Test::Unit::TestCase
   def test_hit_twice_has_2_cards
     2.times { @hand.hit(@deck) }
     assert_equal @hand.cards.size, 2
+  end
+end
+
+class GameTest < Test::Unit::TestCase
+  def setup
+    @game = Game.new
+  end
+
+  def test_player_hand_has_2_cards
+    assert_equal @game.player_hand.cards.size, 2
+  end
+
+  def test_dealer_hand_has_2_cards
+    assert_equal @game.dealer_hand.cards.size, 2
   end
 end
