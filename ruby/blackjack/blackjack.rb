@@ -75,7 +75,6 @@ class Game
     2.times { @player_hand.hit(@deck) }
     @dealer_hand = Hand.new
     2.times { @dealer_hand.hit(@deck) }
-    p @player_hand
   end
 
   def dealer_top_card
@@ -84,6 +83,16 @@ class Game
     p @dealer_hand.cards[1].name
     p @dealer_hand.cards[1].value
     @dealer_hand.cards[1]
+  end
+
+  def player_on_initial_hand
+    if @player_hand.total > 21
+      puts "Player busts!"
+    elsif @player_hand.total == 21
+      puts "Player blackjack!"
+    else
+      puts "Player can hit or wait for dealer"
+    end
   end
 
 end
@@ -167,8 +176,8 @@ class GameTest < Test::Unit::TestCase
     assert_equal dealer_showing, @game.dealer_top_card
   end
 
-  # def test_value_of_initial_hand
-  #   p @game.dealer_hand.cards
-  #   assert_equal total(@game.dealer_hand), (@game.dealer_hand.cards[0].value + @game.dealer_hand.cards[1].value)
-  # end
+  def test_player_on_initial_hand
+    @game.player_on_initial_hand
+  end
+
 end
