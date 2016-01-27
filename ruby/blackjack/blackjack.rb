@@ -45,7 +45,7 @@ class Deck
 end
 
 class Hand
-  attr_accessor :cards
+  attr_accessor :cards, :total
 
   def initialize
     @cards = []
@@ -55,6 +55,15 @@ class Hand
     card = deck.deal_card
     @cards << card
   end
+
+  def total
+    @total = 0
+    @cards.each do |card|
+      @total += card.value
+    end
+    @total
+  end
+
 end
 
 class Game
@@ -76,6 +85,7 @@ class Game
     p @dealer_hand.cards[1].value
     @dealer_hand.cards[1]
   end
+
 end
 
 require 'test/unit'
@@ -119,8 +129,8 @@ end
 
 class HandTest < Test::Unit::TestCase
   def setup
-    @hand = Hand.new
     @deck = Deck.new
+    @hand = Hand.new
   end
 
   def test_hit_has_1_card
@@ -131,6 +141,11 @@ class HandTest < Test::Unit::TestCase
   def test_hit_twice_has_2_cards
     2.times { @hand.hit(@deck) }
     assert_equal @hand.cards.size, 2
+  end
+
+  def test_hand_value_for_two_cards
+    2.times { @hand.hit(@deck) }
+    assert_equal @hand.total, (@hand.cards[0].value + @hand.cards[1].value)
   end
 end
 
@@ -151,4 +166,9 @@ class GameTest < Test::Unit::TestCase
     dealer_showing = @game.dealer_hand.cards[1]
     assert_equal dealer_showing, @game.dealer_top_card
   end
+
+  # def test_value_of_initial_hand
+  #   p @game.dealer_hand.cards
+  #   assert_equal total(@game.dealer_hand), (@game.dealer_hand.cards[0].value + @game.dealer_hand.cards[1].value)
+  # end
 end
