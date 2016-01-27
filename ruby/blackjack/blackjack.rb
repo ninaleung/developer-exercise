@@ -50,6 +50,11 @@ class Hand
   def initialize
     @cards = []
   end
+
+  def hit(deck)
+    card = deck.deal_card
+    @cards << card
+  end
 end
 
 require 'test/unit'
@@ -88,5 +93,22 @@ class DeckTest < Test::Unit::TestCase
   def test_shuffled_deck_has_52_playable_cards
     @deck.shuffle
     assert_equal @deck.playable_cards.size, 52
+  end
+end
+
+class HandTest < Test::Unit::TestCase
+  def setup
+    @hand = Hand.new
+    @deck = Deck.new
+  end
+
+  def test_hit_has_1_card
+    @hand.hit(@deck)
+    assert_equal @hand.cards.size, 1
+  end
+
+  def test_hit_twice_has_2_cards
+    2.times { @hand.hit(@deck) }
+    assert_equal @hand.cards.size, 2
   end
 end
