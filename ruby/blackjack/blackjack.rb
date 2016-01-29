@@ -73,7 +73,7 @@ class Hand
 end
 
 class Game
-  attr_accessor :player_hand, :dealer_hand
+  attr_accessor :player_hand, :dealer_hand, :player_status
 
   def initialize
     @deck = Deck.new
@@ -92,11 +92,15 @@ class Game
 
   def player_on_initial_hand
     if @player_hand.total > 21
-      puts "Player busts!"
+      @player_status = "Player busts!"
+      puts @player_status
     elsif @player_hand.total == 21
-      puts "Player blackjack!"
+      @player_status = "Player blackjack!"
+      puts @player_status
     else
-      puts "Player can hit or wait for dealer"
+      puts "Player hand: #{@player_hand.total}"
+      @player_status = "Player can hit or stay"
+      puts @player_status
     end
   end
 
