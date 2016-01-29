@@ -22,7 +22,7 @@ class Deck
     :jack  => 10,
     :queen => 10,
     :king  => 10,
-    :ace   => [11, 1]}
+    :ace   => 1}
 
   def initialize
     shuffle
@@ -60,6 +60,12 @@ class Hand
     @total = 0
     @cards.each do |card|
       @total += card.value
+      if card.name == :ace
+          @ace_present = true
+      end
+    end
+    if @ace_present && (@total < 12)
+      @total += 10
     end
     @total
   end
