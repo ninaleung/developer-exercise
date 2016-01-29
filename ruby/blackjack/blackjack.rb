@@ -84,10 +84,9 @@ class Game
   end
 
   def dealer_top_card
-    p "Dealer's showing card:"
-    p @dealer_hand.cards[1].suite
-    p @dealer_hand.cards[1].name
-    p @dealer_hand.cards[1].value
+    puts "Dealer's showing card:"
+    puts @dealer_hand.cards[1].suite
+    puts @dealer_hand.cards[1].name
     @dealer_hand.cards[1]
   end
 
