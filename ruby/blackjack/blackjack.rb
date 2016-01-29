@@ -45,7 +45,7 @@ class Deck
 end
 
 class Hand
-  attr_accessor :cards, :total
+  attr_accessor :cards, :total, :ace_present
 
   def initialize
     @cards = []
@@ -158,9 +158,13 @@ class HandTest < Test::Unit::TestCase
     assert_equal @hand.cards.size, 2
   end
 
-  def test_hand_value_for_two_cards
+  def test_hand_total_for_two_cards
     2.times { @hand.hit(@deck) }
-    assert_equal @hand.total, (@hand.cards[0].value + @hand.cards[1].value)
+    if @hand.total > 11 && @hand.ace_present
+      assert_equal @hand.total, (@hand.cards[0].value + @hand.cards[1].value) + 10
+    else
+      assert_equal @hand.total, (@hand.cards[0].value + @hand.cards[1].value)
+    end
   end
 end
 
