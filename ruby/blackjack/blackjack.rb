@@ -166,6 +166,16 @@ class HandTest < Test::Unit::TestCase
       assert_equal @hand.total, (@hand.cards[0].value + @hand.cards[1].value)
     end
   end
+
+  def test_hand_total_for_three_cards
+    3.times { @hand.hit(@deck) }
+    values_of_cards = (@hand.cards[0].value + @hand.cards[1].value + @hand.cards[2].value)
+    if values_of_cards < 12 && @hand.ace_present
+      assert_equal @hand.total, (@hand.cards[0].value + @hand.cards[1].value + @hand.cards[2].value) + 10
+    else
+      assert_equal @hand.total, (@hand.cards[0].value + @hand.cards[1].value + @hand.cards[2].value)
+    end
+  end
 end
 
 class GameTest < Test::Unit::TestCase
