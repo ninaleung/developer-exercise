@@ -73,7 +73,7 @@ class Hand
 end
 
 class Game
-  attr_accessor :player_hand, :dealer_hand, :player_status
+  attr_accessor :player_hand, :dealer_hand, :player_status, :dealer_status
 
   def initialize
     @deck = Deck.new
@@ -207,11 +207,6 @@ class GameTest < Test::Unit::TestCase
     assert_equal @game.dealer_hand.cards.size, 2
   end
 
-  def test_dealer_top_card
-    dealer_showing = @game.dealer_hand.cards[1]
-    assert_equal dealer_showing, @game.dealer_top_card
-  end
-
   def test_player_on_initial_hand
     @game.player_on_initial_hand
 
@@ -223,6 +218,20 @@ class GameTest < Test::Unit::TestCase
       assert_equal @game.player_status, "Player can hit or stay"
     end
 
+  end
+
+  def test_dealer_play_and_show_top_card
+    @game.dealer_play
+
+    if @game.dealer_hand.total > 21
+      assert_equal @game.dealer_status, "Dealer busts!"
+    else
+      assert_equal @game.dealer_status, "Dealer stays"
+      assert_operator @game.dealer_hand.total, :>=, 17
+    end
+
+    # @game.dealer_top_card: if test separately, finds a different card
+    assert_equal @game.dealer_hand.cards[1], @game.dealer_top_card
   end
 
 end
