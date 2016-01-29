@@ -201,6 +201,15 @@ class GameTest < Test::Unit::TestCase
 
   def test_player_on_initial_hand
     @game.player_on_initial_hand
+
+    if @game.player_hand.total > 21
+      assert_equal @game.player_status, "Player busts!"
+    elsif @game.player_hand.total == 21
+      assert_equal @game.player_status, "Player blackjack!"
+    else
+      assert_equal @game.player_status, "Player can hit or stay"
+    end
+    
   end
 
 end
