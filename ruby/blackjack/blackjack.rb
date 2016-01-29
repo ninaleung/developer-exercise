@@ -104,6 +104,19 @@ class Game
     end
   end
 
+  def dealer_play
+    while @dealer_hand.total < 17
+      @dealer_hand.hit(@deck)
+    end
+    if @dealer_hand.total > 21
+      @dealer_status = "Dealer busts!"
+      puts @dealer_status
+    else
+      @dealer_status = "Dealer stays"
+      puts @dealer_status
+    end
+  end
+
 end
 
 require 'test/unit'
@@ -209,7 +222,7 @@ class GameTest < Test::Unit::TestCase
     else
       assert_equal @game.player_status, "Player can hit or stay"
     end
-    
+
   end
 
 end
