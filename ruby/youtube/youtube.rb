@@ -9,6 +9,12 @@ results = Unirest.get("https://www.googleapis.com/youtube/v3/search?part=snippet
   
   INSERT API KEY
 
-  ").body
+  ").body["items"]
 
-p results
+results_array = []
+results.each do |result|
+  results_array << "www.youtube.com/watch?v=" + result["id"]["videoId"]
+end
+
+puts "Here are three YouTube videos matching your search terms:"
+puts results_array
