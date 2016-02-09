@@ -21,3 +21,18 @@ div.accordion-header {
 div.accordion-header.active, div.accordion-header:hover {
   background-color: #ddd;
 } 
+
+div.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.4s ease-in-out;
+  opacitiy: 0;
+}
+
+div.panel.show {
+  opacity:  1;
+  max-height: 500px;
+  padding: 18px;
+}
