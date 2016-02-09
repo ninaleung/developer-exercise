@@ -21,4 +21,14 @@ $(document).ready(function(){
     assert.equal( document.getElementsByClassName("show").length, 0, "Yes, no accordions are showing on load!");
   });
 
+  test( "Panel shows when second accordion is clicked", function( assert ) {
+    $(acc[1]).click();
+    assert.equal( document.getElementsByClassName("show").length, 1, "Yes, an accordion is showing on click!");
+  });
+
+  test( "Clicking again closes second accordion", function( assert ) {
+    $(acc[1]).click();
+    assert.equal( document.getElementsByClassName("show").length, 0, "Yes, clicking again closes it!");
+  });
+
 });
