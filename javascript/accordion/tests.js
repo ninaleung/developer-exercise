@@ -31,4 +31,12 @@ $(document).ready(function(){
     assert.equal( document.getElementsByClassName("show").length, 0, "Yes, clicking again closes it!");
   });
 
+  test( "Clicking more than one accordion works", function( assert ) {
+    $(acc[1]).click();
+    $(acc[4]).click();
+    assert.equal( document.getElementsByClassName("show").length, 2, "Yes, two accordions are showing!");
+    $(acc[1]).click(); // closing the panels again for subsequent tests
+    $(acc[4]).click();
+  });
+
 });
