@@ -36,3 +36,16 @@ div.panel.show {
   max-height: 500px;
   padding: 18px;
 }
+
+div.accordion-header:after {
+  content: '\25B6';
+  font-size: 13px;
+  color: #777;
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+div.accordion-header.active:after {
+  content: "\25BC";
+}
