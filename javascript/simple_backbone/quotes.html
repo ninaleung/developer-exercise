@@ -7,6 +7,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
 </head>
 <body>
+  <h1>Tough quotes with a strong backbone:</h1>
+  <div id="allQuotes"></div>
+
+  <script id="quoteElement" type="text/template">
+   <ul>
+    <li class="quoteInfo"><strong>Quote:</strong> <%= quote %></li>
+    <li class="quoteInfo"><strong>Context:</strong> <%= context %></li>
+    <li class="quoteInfo"><strong>Source:</strong> <%= source %></li>
+    <li class="quoteInfo"><strong>Theme:</strong> <%= theme %></li>
+   </ul>
+  </script>
 
   <script src="js/models/singleQuoteModel.js"></script>
   <script src="js/views/singleQuoteView.js"></script>
