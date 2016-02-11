@@ -26,3 +26,12 @@ var grid = new Backgrid.Grid({
   columns: columns,
   collection: quoteGroup
 });
+
+var paginator = new Backgrid.Extension.Paginator({
+  collection: quoteGroup
+});
+
+$("#grid").append(grid.render().$el);
+$("#paginator").append(paginator.render().$el);
+
+quoteGroup.fetch();
