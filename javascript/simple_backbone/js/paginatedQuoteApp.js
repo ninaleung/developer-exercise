@@ -7,3 +7,22 @@ var quotesCollection = Backbone.PageableCollection.extend({
 });
 
 var quoteGroup = new quotesCollection();
+
+var columns = [{
+  name: "quote",
+  cell: "string"
+}, {
+  name: "context",
+  cell: "string"
+}, {
+  name: "source",
+  cell: "string"
+}, {
+  name: "theme",
+  cell: "string"
+}];
+
+var grid = new Backgrid.Grid({
+  columns: columns,
+  collection: quoteGroup
+});
