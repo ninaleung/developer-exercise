@@ -22,3 +22,7 @@ var fightClubQuote = new app.singleQuote({
 var quoteGroup = new app.quotesCollection([
   wolfQuote, dukeQuote, fightClubQuote
 ]);
+
+var quoteGroupView = new app.allQuotesView({collection: quoteGroup});
+
+$("#allQuotes").html(quoteGroupView.render().el);
